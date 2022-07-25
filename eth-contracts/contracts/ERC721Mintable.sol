@@ -522,7 +522,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 
 
     // Create an internal function to set the tokenURI of a specified tokenId
-    function setTokenURI(uint256 tokenId) internal {
+    function _setTokenURI(uint256 tokenId) internal {
         // require the token exists before setting
         require(_exists(tokenId), "Token does not exist");
         // It should be the _baseTokenURI + the tokenId in string form
@@ -531,14 +531,21 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 
 }
 
-//  TODO's: Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
-//  1) Pass in appropriate values for the inherited ERC721Metadata contract
+//  Create CustomERC721Token contract that inherits from the ERC721Metadata contract. You can name this contract as you please
+//  Pass in appropriate values for the inherited ERC721Metadata contract
 //      - make the base token uri: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/
-//  2) create a public mint() that does the following:
+//  "Real Estate Token", shorthand RET
+
+contract RealEstateToken is ERC721Metadata("Real Estate Token", "RET", "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/") {
+//  create a public mint() that does the following:
 //      -can only be executed by the contract owner
 //      -takes in a 'to' address, tokenId, and tokenURI as parameters
 //      -returns a true boolean upon completion of the function
 //      -calls the superclass mint and setTokenURI functions
-
-
+    function mint(address to, uint256 tokenId) public onlyOwner returns(bool) {
+        _mint(to, tokenId);
+        _setTokenURI(tokenId);
+        return true;
+    }
+}
 
