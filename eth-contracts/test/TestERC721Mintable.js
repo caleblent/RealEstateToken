@@ -9,7 +9,7 @@ contract('TestERC721Mintable', accounts => {
     // const account3 = accounts[7];
 
     const a1count = 2;
-    const a2count = 10;
+    const a2count = 5;
     // const a3count = 33;
 
     describe('match erc721 spec', function () {
@@ -18,38 +18,29 @@ contract('TestERC721Mintable', accounts => {
 
             // mint multiple tokens
 
-            // first try
-            // for(let i = 0; i < a1count; i++) {
-            //     await this.contract.mint(account1, i + a1count);
-            // }
-            // for(let i = 0; i < a2count; i++) {
-            //     await this.contract.mint(account2, i + a2count);
-            // }
-
-            // second try
             for(let i = 0; i < a1count; i++) {
                 await this.contract.mint(account1, a1count+i);
                 let bal = await this.contract.balanceOf(account1);
-                console.log("account1::"+account1+"::index::"+i+"::balance::"+bal);
+                // console.log("account1::"+account1+"::index::"+i+"::balance::"+bal);
             }
-            // for(let i = 0; i < a2count; i++) {
-            //     await this.contract.mint(account2, a2count+i);
-            //     let bal = await this.contract.balanceOf(account2);
-            //     console.log("account1::"+account2+"::index::"+i+"::balance::"+bal);
-            // }
+            for(let i = 0; i < a2count; i++) {
+                await this.contract.mint(account2, a2count+i);
+                let bal = await this.contract.balanceOf(account2);
+                // console.log("account2::"+account2+"::index::"+i+"::balance::"+bal);
+            }
 
         })
 
         it('should return total supply', async function () { 
             let totalSupply = await this.contract.totalSupply.call({from: account1});
-            assert.equal(totalSupply, a1count, "Does not match supposed total supply");
+            assert.equal(totalSupply, a1count+a2count, "Does not match supposed total supply");
         })
-        // PROBLEM HERE!!!!!!!!!!!!!!!!!!!!!
+        
         it('should get token balance', async function () { 
             let bal1 = await this.contract.balanceOf.call(account1);
-            // let bal2 = await this.contract.balanceOf.call(account2);
+            let bal2 = await this.contract.balanceOf.call(account2);
             assert.equal(bal1, a1count, "Does not match account 1 balance");
-            // assert.equal(bal2, a1count, "Does not match account 2 balance");
+            assert.equal(bal2, a2count, "Does not match account 2 balance");
         })
 
         // token uri should be complete i.e: https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/1
