@@ -2,12 +2,12 @@ var ERC721MintableComplete = artifacts.require('RealEstateToken');
 
 contract('TestERC721Mintable', accounts => {
 
-    const owner = accounts[4];
+    const owner = accounts[0];
 
     const account1 = accounts[5];
     const account2 = accounts[6];
 
-    const a1count = 5;
+    const a1count = 2;
     const a2count = 6;
 
     describe('match erc721 spec', function () {
@@ -15,17 +15,25 @@ contract('TestERC721Mintable', accounts => {
             this.contract = await ERC721MintableComplete.new({from: owner});
 
             // mint multiple tokens
-            for(let i = 0; i < a1count; i++) {
-                await this.contract.mint(account1, i + a1count);
-            }
-            for(let i = 0; i < a2count; i++) {
-                await this.contract.mint(account2, i + a2count);
-            }
+
+            // first try
+            // for(let i = 0; i < a1count; i++) {
+            //     await this.contract.mint(account1, i + a1count);
+            // }
+            // for(let i = 0; i < a2count; i++) {
+            //     await this.contract.mint(account2, i + a2count);
+            // }
+
+            // second try
+            let index = 15;
+            await this.contract.mint(account1, index);
+            await this.contract.mint(account1, index+1);
+
         })
 
         it('should return total supply', async function () { 
-            let totalSupply = await this.contract.totalSupply.call({from: owner});
-            assert.equal(totalSupply, a1count + a2count, "Does not match supposed total supply");
+            let totalSupply = await this.contract.totalSupply.call({from: account1});
+            assert.equal(totalSupply, a1count, "Does not match supposed total supply");
         })
 
         it('should get token balance', async function () { 
@@ -56,13 +64,13 @@ contract('TestERC721Mintable', accounts => {
 
     describe('have ownership properties', function () {
         beforeEach(async function () { 
-            this.contract = await ERC721MintableComplete.new({from: account1});
+            this.contract = await ERC721MintableComplete.new({from: owner});
         })
 
         it('should fail when minting when address is not contract owner', async function () { 
             let err = false;
             try {
-                await this.contract.mint(account2, 3, {from: owner});
+                await this.contract.mint(account2, 3, {from: account1});
             } catch { err = true; }
             assert.equal(err, true, "Only contract owner should be able to mint");
         })
