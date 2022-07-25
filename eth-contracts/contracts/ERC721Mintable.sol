@@ -7,7 +7,6 @@ import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol';
 import "./Oraclize.sol";
 
 contract Ownable {
-    //  TODO's
     //  1) create a private '_owner' variable of type address with a public getter function DONE
     //  2) create an internal constructor that sets the _owner var to the creater of the contract DONE
     //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner. DONE
@@ -31,8 +30,8 @@ contract Ownable {
     }
 
     function transferOwnership(address newOwner) public onlyOwner {
-        // TODO add functionality to transfer control of the contract to a newOwner.
-        // make sure the new owner is a real address
+        // functionality to transfer control of the contract to a newOwner.
+        // ensures the new owner is a real address
         require(newOwner != address(0), "Not a real address");
         address oldOwner = _owner;
         _owner == newOwner;
@@ -42,13 +41,6 @@ contract Ownable {
     event OwnershipTransferred(address oldOwner, address newOwner);
 
 }
-
-//  TODO's: Create a Pausable contract that inherits from the Ownable contract
-//  1) create a private '_paused' variable of type bool
-//  2) create a public setter using the inherited onlyOwner modifier 
-//  3) create an internal constructor that sets the _paused variable to false
-//  4) create 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
-//  5) create a Paused & Unpaused event that emits the address that triggered the event
 
 contract ERC165 {
     bytes4 private constant _INTERFACE_ID_ERC165 = 0x01ffc9a7;
@@ -87,6 +79,12 @@ contract ERC165 {
 }
 
 // stopclock functionality that allows the contract to be paused by the owner
+//  Pausable contract that inherits from the Ownable contract
+//  1) private '_paused' variable of type bool
+//  2) public setter using the inherited onlyOwner modifier 
+//  3) internal constructor that sets the _paused variable to false
+//  4) 'whenNotPaused' & 'paused' modifier that throws in the appropriate situation
+//  5) Paused & Unpaused event that emits the address that triggered the event
 contract Pausable is Ownable {
     bool private _operational;
 
@@ -156,13 +154,12 @@ contract ERC721 is Pausable, ERC165 {
     }
 
     function balanceOf(address owner) public view returns (uint256) {
-        // TODO return the token balance of given address
-        // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
+        // return the token balance of given address
         return _ownedTokensCount[owner].current();
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
-        // TODO return the owner of the given tokenId
+        // return the owner of the given tokenId
         return _tokenOwner[tokenId];
     }
 
@@ -175,7 +172,7 @@ contract ERC721 is Pausable, ERC165 {
         require(isApprovedForAll(to, msg.sender) || msg.sender == to, "Not allowed to approve");
         // add 'to' address to token approvals
         _tokenApprovals[tokenId] = to;
-        // TODO emit Approval Event
+        // emit Approval Event
         emit Approval(to, msg.sender, tokenId);
 
     }
