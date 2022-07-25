@@ -16,17 +16,17 @@ contract Ownable {
 
     address private _owner;
 
-    function getOwner() public returns(address) {
+    function getOwner() public viewreturns(address) {
         return _owner;
     }
 
     constructor() internal {
-        this._owner = msg.sender;
+        _owner = msg.sender;
         emit OwnershipTransferred(address(0), msg.sender);
     }
 
     modifier onlyOwner() {
-        require(msg.sender == this._owner, "Caller is not the owner");
+        require(msg.sender == _owner, "Caller is not the owner");
         _;
     }
 
@@ -34,8 +34,8 @@ contract Ownable {
         // TODO add functionality to transfer control of the contract to a newOwner.
         // make sure the new owner is a real address
         require(newOwner != address(0), "Not a real address");
-        address oldOwner = this._owner;
-        this._owner == newOwner;
+        address oldOwner = _owner;
+        _owner == newOwner;
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 
