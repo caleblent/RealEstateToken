@@ -8,7 +8,7 @@ contract('TestERC721Mintable', accounts => {
     const account2 = accounts[6];
 
     const a1count = 2;
-    const a2count = 6;
+    const a2count = 10;
 
     describe('match erc721 spec', function () {
         beforeEach(async function () { 
@@ -25,9 +25,10 @@ contract('TestERC721Mintable', accounts => {
             // }
 
             // second try
-            let index = 15;
-            await this.contract.mint(account1, index);
-            await this.contract.mint(account1, index+1);
+            for(let i = 0; i < a1count; i++) {
+                await this.contract.mint(account1, a1count+i);
+                console.log("acc1::"+i+"::balance::"+this.contract.balanceOf(account1));
+            }
 
         })
 
