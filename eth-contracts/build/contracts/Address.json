@@ -600,7 +600,7 @@
                                 "name": "this",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 7810,
+                                "referencedDeclaration": 7831,
                                 "src": "2684:4:3",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_contract$_Address_$326",
@@ -711,10 +711,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7793,
-                        7794
+                        7814,
+                        7815
                       ],
-                      "referencedDeclaration": 7794,
+                      "referencedDeclaration": 7815,
                       "src": "2668:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -950,10 +950,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        7793,
-                        7794
+                        7814,
+                        7815
                       ],
-                      "referencedDeclaration": 7794,
+                      "referencedDeclaration": 7815,
                       "src": "2867:7:3",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1787,10 +1787,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                7793,
-                                7794
+                                7814,
+                                7815
                               ],
-                              "referencedDeclaration": 7794,
+                              "referencedDeclaration": 7815,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -1865,7 +1865,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 7810,
+                                          "referencedDeclaration": 7831,
                                           "type": "library Address",
                                           "value": "this"
                                         },
@@ -2127,10 +2127,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                7793,
-                                7794
+                                7814,
+                                7815
                               ],
-                              "referencedDeclaration": 7794,
+                              "referencedDeclaration": 7815,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -2205,7 +2205,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.8",
-  "updatedAt": "2022-07-25T20:56:34.243Z",
+  "updatedAt": "2022-07-25T21:01:13.227Z",
   "devdoc": {
     "details": "Collection of functions related to the address type",
     "methods": {}

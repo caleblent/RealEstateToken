@@ -1,0 +1,370 @@
+{
+  "contractName": "SolnSquareVerifier",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/SolnSquareVerifier.sol\":\"SolnSquareVerifier\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/SolnSquareVerifier.sol\":{\"keccak256\":\"0xa0a40292a9b8bb06f9a72dd93567bc8a5b439d69182fbef2d2382490d12de487\",\"urls\":[\"bzz-raw://56b1a2744b9a39a4f5263a5e2af5023b9a62ecc977a123a4a6d538bb8d197348\",\"dweb:/ipfs/QmbtT8Cu8MWCvegpNwQSF9W9PWdB8CgVqcf9oScy8cBCfd\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060046000806101000a81548160ff021916908360ff160217905550603e8060386000396000f3fe6080604052600080fdfea265627a7a72315820af2d24b2d69457ffafd8b8010b2c7b44406d73c434471bc524ecde204f0ae79c64736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820af2d24b2d69457ffafd8b8010b2c7b44406d73c434471bc524ecde204f0ae79c64736f6c63430005100032",
+  "sourceMap": "27:101:7:-;;;84:41;8:9:-1;5:2;;;30:1;27;20:12;5:2;84:41:7;118:1;112:3;;:7;;;;;;;;;;;;;;;;;;27:101;;;;;;",
+  "deployedSourceMap": "27:101:7:-;;;;;",
+  "source": "pragma solidity ^0.5.0;\r\n\r\ncontract SolnSquareVerifier {\r\n  uint8 private num;\r\n\r\n  constructor() public {\r\n    num = 4;\r\n  }\r\n}\r\n\r\n// TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>\r\n\r\n\r\n\r\n// TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class\r\n\r\n\r\n\r\n// TODO define a solutions struct that can hold an index & an address\r\n\r\n\r\n// TODO define an array of the above struct\r\n\r\n\r\n// TODO define a mapping to store unique solutions submitted\r\n\r\n\r\n\r\n// TODO Create an event to emit when a solution is added\r\n\r\n\r\n\r\n// TODO Create a function to add the solutions to the array and emit the event\r\n\r\n\r\n\r\n// TODO Create a function to mint new NFT only after the solution has been verified\r\n//  - make sure the solution is unique (has not been used before)\r\n//  - make sure you handle metadata as well as tokenSuplly\r\n\r\n  \r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+  "sourcePath": "C:\\Users\\caleb\\Desktop\\workspace\\Blockchain-Capstone\\eth-contracts\\contracts\\SolnSquareVerifier.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/SolnSquareVerifier.sol",
+    "exportedSymbols": {
+      "SolnSquareVerifier": [
+        7783
+      ]
+    },
+    "id": 7784,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7772,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:7"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7783,
+        "linearizedBaseContracts": [
+          7783
+        ],
+        "name": "SolnSquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 7774,
+            "name": "num",
+            "nodeType": "VariableDeclaration",
+            "scope": 7783,
+            "src": "60:17:7",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint8",
+              "typeString": "uint8"
+            },
+            "typeName": {
+              "id": 7773,
+              "name": "uint8",
+              "nodeType": "ElementaryTypeName",
+              "src": "60:5:7",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint8",
+                "typeString": "uint8"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 7781,
+              "nodeType": "Block",
+              "src": "105:20:7",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 7779,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 7777,
+                      "name": "num",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 7774,
+                      "src": "112:3:7",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "34",
+                      "id": 7778,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "118:1:7",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_4_by_1",
+                        "typeString": "int_const 4"
+                      },
+                      "value": "4"
+                    },
+                    "src": "112:7:7",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "id": 7780,
+                  "nodeType": "ExpressionStatement",
+                  "src": "112:7:7"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 7782,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 7775,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "95:2:7"
+            },
+            "returnParameters": {
+              "id": 7776,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "105:0:7"
+            },
+            "scope": 7783,
+            "src": "84:41:7",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 7784,
+        "src": "27:101:7"
+      }
+    ],
+    "src": "0:967:7"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/SolnSquareVerifier.sol",
+      "exportedSymbols": {
+        "SolnSquareVerifier": [
+          7783
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 7772,
+        "name": "PragmaDirective",
+        "src": "0:23:7"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            7783
+          ],
+          "name": "SolnSquareVerifier",
+          "scope": 7784
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "num",
+              "scope": 7783,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint8",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint8",
+                  "type": "uint8"
+                },
+                "id": 7773,
+                "name": "ElementaryTypeName",
+                "src": "60:5:7"
+              }
+            ],
+            "id": 7774,
+            "name": "VariableDeclaration",
+            "src": "60:17:7"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 7783,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7775,
+                "name": "ParameterList",
+                "src": "95:2:7"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7776,
+                "name": "ParameterList",
+                "src": "105:0:7"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint8"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 7774,
+                              "type": "uint8",
+                              "value": "num"
+                            },
+                            "id": 7777,
+                            "name": "Identifier",
+                            "src": "112:3:7"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "34",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 4",
+                              "value": "4"
+                            },
+                            "id": 7778,
+                            "name": "Literal",
+                            "src": "118:1:7"
+                          }
+                        ],
+                        "id": 7779,
+                        "name": "Assignment",
+                        "src": "112:7:7"
+                      }
+                    ],
+                    "id": 7780,
+                    "name": "ExpressionStatement",
+                    "src": "112:7:7"
+                  }
+                ],
+                "id": 7781,
+                "name": "Block",
+                "src": "105:20:7"
+              }
+            ],
+            "id": 7782,
+            "name": "FunctionDefinition",
+            "src": "84:41:7"
+          }
+        ],
+        "id": 7783,
+        "name": "ContractDefinition",
+        "src": "27:101:7"
+      }
+    ],
+    "id": 7784,
+    "name": "SourceUnit",
+    "src": "0:967:7"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x0F1dd3463FbAB229C5519e80beD6Fc9E765faaae",
+      "transactionHash": "0x1e1f7ee701bae7ebac1c854424a3a688a78cb64669798f54833cebff8e9ab51c"
+    }
+  },
+  "schemaVersion": "3.4.8",
+  "updatedAt": "2022-07-25T21:09:39.191Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
