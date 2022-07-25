@@ -86,7 +86,38 @@ contract ERC165 {
     }
 }
 
-contract ERC721 is ERC165 {// Pausable, ERC165 {
+// stopclock functionality that allows the contract to be paused by the owner
+contract Pausable is Ownable {
+    bool private _operational;
+
+    function setStatus(bool status) public onlyOwner {
+        _operational = status;
+        if (!_operational) {
+            emit Paused(msg.sender);
+        } else {
+            emit Unpaused(msg.sender);
+        }
+    }
+
+    constructor() internal {
+        _operational = true;
+    }
+
+    modifier isOperational() {
+        require(_operational, "Contract is not operational");
+        _;
+    }
+
+    modifier isNotOperational() {
+        require(!_operational, "Contract is operational");
+        _;
+    }
+
+    event Paused(address pauser);
+    event Unpaused(address unpauser);
+}
+
+contract ERC721 is Pausable, ERC165 {
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
@@ -132,7 +163,7 @@ contract ERC721 is ERC165 {// Pausable, ERC165 {
 
     function ownerOf(uint256 tokenId) public view returns (address) {
         // TODO return the owner of the given tokenId
-        tokenId.
+        return address(1);
     }
 
 //    @dev Approves another address to transfer the given token ID
@@ -460,10 +491,10 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
 
     // TODO: create external getter functions for name, symbol, and baseTokenURI
 
-    function tokenURI(uint256 tokenId) external view returns (string memory) {
-        require(_exists(tokenId));
-        return _tokenURIs[tokenId];
-    }
+    // function tokenURI(uint256 tokenId) external view returns (string memory) {
+    //     require(_exists(tokenId));
+    //     return _tokenURIs[tokenId];
+    // }
 
 
     // TODO: Create an internal function to set the tokenURI of a specified tokenId
