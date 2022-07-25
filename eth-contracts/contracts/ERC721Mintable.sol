@@ -16,7 +16,7 @@ contract Ownable {
 
     address private _owner;
 
-    function getOwner() public viewreturns(address) {
+    function getOwner() public view returns(address) {
         return _owner;
     }
 
@@ -158,29 +158,32 @@ contract ERC721 is Pausable, ERC165 {
     function balanceOf(address owner) public view returns (uint256) {
         // TODO return the token balance of given address
         // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
-        return owner.balance;
+        return _ownedTokensCount[owner].current();
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
         // TODO return the owner of the given tokenId
-        return address(1);
+        return _tokenOwner[tokenId];
     }
 
 //    @dev Approves another address to transfer the given token ID
     function approve(address to, uint256 tokenId) public {
         
-        // TODO require the given address to not be the owner of the tokenId
-
-        // TODO require the msg sender to be the owner of the contract or isApprovedForAll() to be true
-
-        // TODO add 'to' address to token approvals
-
+        // require the given address to not be the owner of the tokenId
+        require(to != _tokenOwner[tokenId], "Recipient already owns token");
+        // require the msg sender to be the owner of the contract or isApprovedForAll() to be true
+        require(isApprovedForAll(to, msg.sender) || msg.sender == to, "Not allowed to approve");
+        // add 'to' address to token approvals
+        _tokenApprovals[tokenId] = to;
         // TODO emit Approval Event
+        emit Approval(to, msg.sender, tokenId);
 
     }
 
     function getApproved(uint256 tokenId) public view returns (address) {
-        // TODO return token approval if it exists
+        // return token approval if it exists
+        require(_tokenApprovals[tokenId] != address(0), "Token approval does not exist");
+        return _tokenApprovals[tokenId];
     }
 
     /**
@@ -245,27 +248,32 @@ contract ERC721 is Pausable, ERC165 {
     // @dev Internal function to mint a new token
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _mint(address to, uint256 tokenId) internal {
-
-        // TODO revert if given tokenId already exists or given address is invalid
-  
-        // TODO mint tokenId to given address & increase token count of owner
-
-        // TODO emit Transfer event
+        
+        // revert if given tokenId already exists or given address is invalid
+        require(!_exists(tokenId));
+        // mint tokenId to given address & increase token count of owner
+        _tokenOwner[tokenId] = to;
+        _ownedTokensCount[to].increment();
+        // emit Transfer event
+        emit Transfer(msg.sender, to, tokenId);
     }
 
     // @dev Internal function to transfer ownership of a given token ID to another address.
     // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
     function _transferFrom(address from, address to, uint256 tokenId) internal {
 
-        // TODO: require from address is the owner of the given token
-
-        // TODO: require token is being transfered to valid address
-        
-        // TODO: clear approval
-
-        // TODO: update token counts & transfer ownership of the token ID 
-
-        // TODO: emit correct event
+        // require from address is the owner of the given token
+        require(from == _tokenOwner[tokenId], "Does not own the token");
+        // require token is being transfered to valid address
+        require(!to.isContract(), "Not allowed to transfer to contract");
+        // clear approval
+        _tokenApprovals[tokenId] = address(0);
+        // update token counts & transfer ownership of the token ID 
+        _tokenOwner[tokenId] = to;
+        _ownedTokensCount[from].decrement();
+        _ownedTokensCount[to].increment();
+        // emit correct event
+        emit Transfer(from, to, tokenId);
     }
 
     /**
