@@ -22,7 +22,6 @@ contract Ownable {
 
     constructor() internal {
         this._owner = msg.sender;
-
         emit OwnershipTransferred(address(0), msg.sender);
     }
 
@@ -33,18 +32,14 @@ contract Ownable {
 
     function transferOwnership(address newOwner) public onlyOwner {
         // TODO add functionality to transfer control of the contract to a newOwner.
+        // make sure the new owner is a real address
+        require(newOwner != address(0), "Not a real address");
         address oldOwner = this._owner;
         this._owner == newOwner;
-
-        // make sure the new owner is a real address
-        // HOW???
-        // I think this is handled with the 'onlyOwner' modifier
-
         emit OwnershipTransferred(oldOwner, newOwner);
     }
 
     event OwnershipTransferred(address oldOwner, address newOwner);
-
 
 }
 
@@ -91,7 +86,7 @@ contract ERC165 {
     }
 }
 
-contract ERC721 is Pausable, ERC165 {
+contract ERC721 is ERC165 {// Pausable, ERC165 {
 
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
@@ -132,10 +127,12 @@ contract ERC721 is Pausable, ERC165 {
     function balanceOf(address owner) public view returns (uint256) {
         // TODO return the token balance of given address
         // TIP: remember the functions to use for Counters. you can refresh yourself with the link above
+        return owner.balance;
     }
 
     function ownerOf(uint256 tokenId) public view returns (address) {
         // TODO return the owner of the given tokenId
+        tokenId.
     }
 
 //    @dev Approves another address to transfer the given token ID
