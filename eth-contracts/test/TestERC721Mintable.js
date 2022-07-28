@@ -2,15 +2,15 @@ var ERC721MintableComplete = artifacts.require('RealEstateToken');
 
 contract('TestERC721Mintable', accounts => {
 
-    const owner = accounts[1];
+    const owner = accounts[0];
 
     const account1 = accounts[5];
     const account2 = accounts[6];
     const account3 = accounts[7];
 
     const a1count = 2;
-    const a2count = 5;
-    const a3count = 16;
+    const a2count = 4;
+    const a3count = 8;
 
     describe('match erc721 spec', function () {
         beforeEach(async function () { 
@@ -37,13 +37,7 @@ contract('TestERC721Mintable', accounts => {
         })
 
         it('should return total supply', async function () { 
-            let a1Supply = await this.contract.totalSupply.call({from: account1});
-            assert.equal(a1Supply, a1count, "Does not match a1 supply");
-            let a2Supply = await this.contract.totalSupply.call({from: account2});
-            assert.equal(a2Supply, a2count, "Does not match a2 supply");
-            let a3Supply = await this.contract.totalSupply.call({from: account3});
-            assert.equal(a3Supply, a3count, "Does not match a3 supply");
-            let totalSupply = await this.contract.totalSupply.call({from: owner});
+            let totalSupply = await this.contract.totalSupply.call({from: account1});
             assert.equal(totalSupply, a1count+a2count+a3count, "Does not match total supply");
         })
         
