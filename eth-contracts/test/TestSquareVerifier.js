@@ -6,12 +6,18 @@ contract('TestVerifier', accounts => {
   describe('Exercise Verifier', function(){
       beforeEach(async function(){
           this.contract = await SquareVerifier.new();
+          console.log(ZokratesProof.proof);
+          console.log("ughhhhhh");
+          // console.log(Object.values(ZokratesProof));
+          console.log("again bruv");
+          console.log(Object.values(ZokratesProof.proof));
+          // console.log(JSON.stringify(ZokratesProof));
       });
 
       // Test verification with correct proof
       // - use the contents from proof.json generated from zokrates steps
       it('should verify with the correct proof', async function(){
-          let result = await this.contract.verifyTx.call(...Object.values(ZokratesProof.proof), ZokratesProof.inputs);
+          let result = await this.contract.verifyTx.call(Object.values(ZokratesProof.proof), ZokratesProof.inputs);
           assert.equal(result, true)
       });
 
