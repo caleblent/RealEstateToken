@@ -1,90 +1,94 @@
-var solnSquareContract = artifacts.require('SolnSquareVerifier');
-var verifierContract = artifacts.require("Verifier");
-var json = require('../../zokrates/code/square/proof.json');
+const SolnSquareVerifier = artifacts.require("SolnSquareVerifier")
+const zokratesProof = require("../../zokrates/code/square/proof.json")
+// const zokratesProof = {
+//   proof: {
+//     a: [
+//       "0x0a6443ebf4a43abb27aedfbfe85e15fcd8c584e8f98c365062718ec000b1bb87",
+//       "0x1846f9e106cf63a0cf6cf01cce48e834a4e54bf1c22e82cd92b7dd3fb80fd185",
+//     ],
+//     b: [
+//       [
+//         "0x069559dab516dcad73fc5281f8be6f51abdbbeef0a4d87852ea2d18a9dec70a6",
+//         "0x1bf8da35145352ad98ba3dff7930e4190764809da982165c017aa77c36412ebf",
+//       ],
+//       [
+//         "0x060438a7c56acd273cef29c850290a4b8f91dc9ea959a70c757d133713a2bc62",
+//         "0x144acd610553d714935a8067858f17a9107d282a7bba9e017c325b25895853ce",
+//       ],
+//     ],
+//     c: [
+//       "0x072c7ea4803653064fca84ddd93e78c03263ea1e973d577cb68b27f645156ad0",
+//       "0x1f9c85723c15888240e80b696b10271ce6175291de6d5cef516b39129037993e",
+//     ],
+//   },
+//   inputs: [
+//     "0x0000000000000000000000000000000000000000000000000000000000000004",
+//     "0x0000000000000000000000000000000000000000000000000000000000000002",
+//   ],
+// }
+//   {
+//     proof: {
+//       a: [
+//         "0x1735777a49c41709ce0af37fbef3563498d5a53c9efed907488ef811cff988d3",
+//         "0x11c40a6c5978a2bab2d2e6f85f38746955c72c9d538c2faa1b9f14e9d276a61f",
+//       ],
+//       b: [
+//         [
+//           "0x1f358d8cd37c09129a0bc097afd369bcac72c7461bb0da3259c9bf32884a0a60",
+//           "0x046819ae5a0b750f8930e380be9628f8bba34a67262ddd0afbcd6a960b9a1d80",
+//         ],
+//         [
+//           "0x1bcc2a57a4d1bb3a0073bee33007b06edbf601cd169c5a326d2a97c0d7ea1d91",
+//           "0x0a6c7b06c27e13439d67dc35651c80a6f9b9acc58ed7e8f3a1457995d2e8cf76",
+//         ],
+//       ],
+//       c: [
+//         "0x302cd553a23c362a8fe3464fa5f51760363ac7180015a9343e7ddc2e3fb26043",
+//         "0x06b6c987dde2257c29ff27ae04d777176ff0b1515781a28eb42e89f269cbb1ac",
+//       ],
+//     },
+//     inputs: [
+//       "0x0000000000000000000000000000000000000000000000000000000000000009",
+//       "0x0000000000000000000000000000000000000000000000000000000000000001",
+//     ],
+//   }
 
-const ZokratesProof = {
-  "scheme": "g16",
-  "curve": "bn128",
-  "proof": {
-    "a": [
-      "0x2ee90d7206282e3c3cd6b8b62bfbc9d58df26628bef33f20b992f15dadc9d420",
-      "0x1c418b7946bea6a0ac1c12a0ed11a0affa4db20dc9cdeeee9dd92aff51226d39"
-    ],
-    "b": [
-      [
-        "0x0ecab7bb029b87e2453eca15aafb66f6772d2f98ef1c4431449a281642b7d28c",
-        "0x08c9cbaa5ad98c8fda3c2949ef1e7b274a8651b315bc3b5155673d8a981a269f"
-      ],
-      [
-        "0x16a0922466461c7836d330833b6971a4e8e6a1c9204ef0bac6f3848018e2e930",
-        "0x27a81e6f7bbf582934e47fad6aa62496b3273f196f2f6744681d4d49a0cde4d7"
-      ]
-    ],
-    "c": [
-      "0x0b2af5ef49cf36a641de9cab24c59716a8f047f4afeece0637c6e5b87c2a233f",
-      "0x035876fdaa780f59af509784a58b8ce6f54419bcd98a8f0c9521ab70efb33b8d"
-    ]
-  },
-  "inputs": [
-    "0x0000000000000000000000000000000000000000000000000000000000000009"
-  ]
-}
+contract("TestSolnSquareVerifier", (accounts) => {
+  describe("Exercise SolnSquareVerifier", function () {
+    beforeEach(async function () {
+      this.contract = await SolnSquareVerifier.new()
+    })
 
-
-contract('SquareVerifier', accounts => {
-
-    const account_one = accounts[5];
-    const account_two = accounts[6];
-    const account_three = accounts[7];
-    const account_four = accounts[8];
-    const symbol = "RET";
-    const name = "RealEstateToken";
-    const uri = "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/";
-
-// POSSIBLE SOLUTION
-// COPY PASTE the proof.json file into here as an object, and then
-// pull from that to verify that it works and whatnot.
-// This would give me the ability to tamper with it until it works.
-
-    describe('Test if a new solution can be added for contract - SolnSquareVerifier', function () {
-        beforeEach(async function () {
-            const verifier = await verifierContract.new({from: account_one});
-            this.contract = await solnSquareContract.new(verifier.address, name, symbol, {from: account_one});
-
-        })
-
-        it('add new solution', async function () {
-          let tokenId = 5;
-          let result = await this.contract.addSolution(account_two,tokenId,json.proof.a,json.proof.b,json.proof.c,json.inputs,);
-          assert.equal(result.logs[0].args[1], account_two,"Solution-address doesn't match senders adddress");
-          try{
-            let second = await this.contract.addSolution(account_two,tokenId,json.proof.a,json.proof.b,json.proof.c,json.inputs);
-            throw(second)
-          }catch(error){
-            assert.equal(error.reason,"Solution exists already","Was able to make two identical solutions");
-          }
-        });
-  });
-
-    describe('Test if an ERC721 token can be minted for contract - SolnSquareVerifier', function () {
-        beforeEach(async function () {
-          const verifier = await verifierContract.new({from: account_one});
-          this.contract = await solnSquareContract.new(verifier.address, name, symbol, {from: account_one});
-        })
-
-        it('mintERC721', async function () {
-
-          let result = await this.contract.addSolution(account_one,0,json.proof.a,json.proof.b,json.proof.c,json.inputs);
-          assert.equal(result.logs[0].args[1], account_one,"Solution-address doesn't match senders adddress");
-          await this.contract.mintNewNFT(json.inputs[0],json.inputs[1],account_three,{from:account_one});
-          let balance = await this.contract.balanceOf(account_three);
-          assert.equal(parseInt(balance), 1, "Incorrect token balance");
-
-          let uri = await this.contract.tokenURI(0,{from:account_one});
-          assert.equal(uri, "https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/0"," Incorrect uri");
-
-
-        });
-    });
-
+    // Test if a new solution can be added for contract - SolnSquareVerifier
+    it("should add new solutions", async function () {
+      let result = await this.contract.addSolution(
+        accounts[1],
+        1,
+        zokratesProof.proof.A,
+        zokratesProof.proof.B,
+        zokratesProof.proof.C,
+        zokratesProof.inputs,
+        {
+          from: accounts[0],
+        }
+      )
+      console.log(result)
+    })
+    // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
+    it("should mint tokens for contract", async function () {
+      await this.contract.addSolution(
+        accounts[1],
+        1,
+        zokratesProof.A,
+        zokratesProof.B,
+        zokratesProof.C,
+        zokratesProof.inputs,
+        {
+          from: accounts[0],
+        }
+      )
+      let result = await this.contract.mint(accounts[1], 1, { from: accounts[0] })
+      // console.log(result)
+    })
+  })
 })
