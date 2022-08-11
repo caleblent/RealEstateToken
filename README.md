@@ -2,6 +2,19 @@
 
 The capstone will build upon the knowledge you have gained in the course in order to build a decentralized housing product.
 
+# How to run tests
+
+Make sure your pwd is eth-contracts.
+
+To run all tests, use:
+
+- truffle test
+
+To run a specific test, use:
+
+- truffle test test/TestERC721Mintable.js
+- (or whichever one you want)
+
 # Rinkeby Testnet
 
 SolnSquareVerifier.sol address:
