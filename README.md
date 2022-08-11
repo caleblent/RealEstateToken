@@ -20,7 +20,13 @@ To run a specific test, use:
 SolnSquareVerifier.sol address:
 
 - 0x44b716A46BC55d66c8921D44DD97515dd3d60278
-- 0x7289C23e4101AED7Cb6710617e8e0A30c6c4ced4
+
+Verifier.sol address:
+
+- 0x150e02B73e93198Cc1B43E8b8dCCBDb95b5D7e9b
+
+SquareVerifier.sol address:
+
 - 0x2A4F5edCEDFe9194B942bf317FdbCD5dF8751E88
 
 # Project Resources
