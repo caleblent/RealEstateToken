@@ -29,6 +29,10 @@ SquareVerifier.sol address:
 
 - 0x2A4F5edCEDFe9194B942bf317FdbCD5dF8751E88
 
+OpenSea storefront:
+
+- https://testnets.opensea.io/collection/green-lake-blvd
+
 # Project Resources
 
 - [Remix - Solidity IDE](https://remix.ethereum.org/)
