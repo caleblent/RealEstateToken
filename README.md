@@ -29,9 +29,21 @@ SquareVerifier.sol address:
 
 - 0x2A4F5edCEDFe9194B942bf317FdbCD5dF8751E88
 
-OpenSea storefront:
+# OpenSea
+
+Storefront:
 
 - https://testnets.opensea.io/collection/green-lake-blvd
+
+102, 104, 106, 108, and 110 Green Lake Blvd are still up for sale. The odd number properties were purchased.
+
+Sales/Transactions/Transfers:
+
+- 101 Green Lake Blvd: https://rinkeby.etherscan.io/tx/0x41376b83aa236bdadf1a0ebefad51794398f9c0ffa70fb78debab2fe5cd78b8e
+- 109 Green Lake Blvd: https://rinkeby.etherscan.io/tx/0x40acdea7c5d46a88378d8e19d29d6fa11f68f8ba255cbc3acff51a7a06ff7b60
+- 105 Green Lake Blvd: https://rinkeby.etherscan.io/tx/0x7b215d9b731a9dda7c5a38a4327e57db618252b3ecc040d4a11c3287e22dec3e
+- 107 Green Lake Blvd: https://rinkeby.etherscan.io/tx/0xdafa8f3089e1593389adcedbad7a3465ed6c536407adc158328ba95b2816c128
+- 103 Green Lake Blvd: https://rinkeby.etherscan.io/tx/0x610c21bd74bc0849b95b66a2addcb35e53ba845582a4578caad22a25c5db0d94
 
 # Project Resources
 
